@@ -1,0 +1,156 @@
+body {
+    background-color: #111111;
+    color: #e1e1e1;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin: 60px 0;
+}
+.feature {
+    background: #222;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+.button_custom {
+    background-color: #43B581;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.button_custom:hover {
+    background-color: #3a9c6f;
+    transform: scale(1.05);
+}
+.neon-text {
+    font-size: 6em;
+    color: #fff;
+    text-align: center;
+    text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #43B581,
+        0 0 30px #43B581,
+        0 0 40px #43B581,
+        0 0 50px #43B581,
+        0 0 60px #43B581;
+    margin: 60px 0;
+    animation: pulsate 1.5s infinite alternate;
+}
+@keyframes pulsate {
+    100% {
+        text-shadow:
+            0 0 5px #fff,
+            0 0 10px #fff,
+            0 0 20px #fff,
+            0 0 30px #43B581,
+            0 0 40px #43B581,
+            0 0 50px #43B581,
+            0 0 60px #43B581;
+    }
+    0% {
+        text-shadow:
+            0 0 2px #fff,
+            0 0 4px #fff,
+            0 0 6px #fff,
+            0 0 10px #43B581,
+            0 0 45px #43B581,
+            0 0 55px #43B581,
+            0 0 70px #43B581,
+            0 0 80px #43B581;
+    }
+}
+#loading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #111111;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5em;
+    z-index: 1000;
+    transition: opacity 1s ease, visibility 1s ease;
+}
+#loadingText {
+    text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #43B581,
+        0 0 30px #43B581,
+        0 0 40px #43B581;
+    animation: pulsate 1.5s infinite alternate;
+}
+.nav-button {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-weight: bold;
+}
+.nav-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+.nav-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+.nav-content {
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem 2rem;
+}
+.page-content {
+    padding-top: 100px;
+}
+.caret {
+    border-right: 2px solid #fff;
+    animation: blink 0.7s steps(1) infinite;
+}
+@keyframes blink {
+    0%, 100% { border-color: transparent; }
+    50% { border-color: white; }
+}
+.fade-in {
+    display: inline-block;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
