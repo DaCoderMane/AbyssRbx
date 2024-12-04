@@ -7,18 +7,22 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
 }
+
 .container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     text-align: center;
 }
+
 .features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
     margin: 60px 0;
 }
+
 .feature {
     background: #222;
     border-radius: 15px;
@@ -26,16 +30,18 @@ body {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s, box-shadow 0.3s;
 }
+
 .feature:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
+
 .button_custom {
     background-color: #43B581;
     border: none;
     color: white;
-    padding: 15px 32px;
-    font-size: 18px;
+    padding: 12px 24px;
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     border-radius: 8px;
@@ -44,12 +50,14 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 .button_custom:hover {
     background-color: #3a9c6f;
     transform: scale(1.05);
 }
+
 .neon-text {
-    font-size: 6em;
+    font-size: 4em; /* Reduced font size for better layout */
     color: #fff;
     text-align: center;
     text-shadow:
@@ -60,9 +68,10 @@ body {
         0 0 40px #43B581,
         0 0 50px #43B581,
         0 0 60px #43B581;
-    margin: 60px 0;
+    margin: 40px 0; /* Reduced margin for balance */
     animation: pulsate 1.5s infinite alternate;
 }
+
 @keyframes pulsate {
     100% {
         text-shadow:
@@ -86,6 +95,7 @@ body {
             0 0 80px #43B581;
     }
 }
+
 #loading {
     position: fixed;
     width: 100%;
@@ -99,6 +109,7 @@ body {
     z-index: 1000;
     transition: opacity 1s ease, visibility 1s ease;
 }
+
 #loadingText {
     text-shadow:
         0 0 5px #fff,
@@ -108,48 +119,68 @@ body {
         0 0 40px #43B581;
     animation: pulsate 1.5s infinite alternate;
 }
+
 .nav-button {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: white;
+    background: rgba(147, 118, 230, 0.1);
+    border: 1px solid rgba(147, 118, 230, 0.2);
     padding: 12px 24px;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-    font-weight: bold;
+    border-radius: 0.75rem;
+    color: #9376E6;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
 }
+
 .nav-button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
+    background: rgba(147, 118, 230, 0.2);
+    transform: translateY(-2px);
 }
+
 .nav-container {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 50;
+    padding: 1rem;
 }
+
 .nav-content {
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 1.5rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    transform-origin: top;
 }
+
 .page-content {
     padding-top: 100px;
 }
+
 .caret {
     border-right: 2px solid #fff;
     animation: blink 0.7s steps(1) infinite;
 }
+
 @keyframes blink {
     0%, 100% { border-color: transparent; }
     50% { border-color: white; }
 }
+
 .fade-in {
     display: inline-block;
     opacity: 0;
     animation: fadeIn 0.5s ease forwards;
 }
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
