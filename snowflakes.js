@@ -1,13 +1,10 @@
 const canvas = document.getElementById("SnowflakeCanvas");
 const ctx = canvas.getContext("2d");
 
-function setCanvasSize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-setCanvasSize();
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-let numSnowflakes = Math.floor((canvas.width * canvas.height) / 5000);
+const numSnowflakes = 150;
 
 function random(min, max) {
     return Math.random() * (max - min) + min;
@@ -71,14 +68,10 @@ class Snowflake {
     }
 }
 
-let snowflakes = [];
-function createSnowflakes() {
-    snowflakes = [];
-    for (let i = 0; i < numSnowflakes; i++) {
-        snowflakes.push(new Snowflake());
-    }
+const snowflakes = [];
+for (let i = 0; i < numSnowflakes; i++) {
+    snowflakes.push(new Snowflake());
 }
-createSnowflakes();
 
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -93,12 +86,7 @@ function animate() {
 
 animate();
 
-let resizeTimeout;
 window.addEventListener("resize", () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-        setCanvasSize();
-        numSnowflakes = Math.floor((canvas.width * canvas.height) / 5000);
-        createSnowflakes();
-    }, 200);
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 });
