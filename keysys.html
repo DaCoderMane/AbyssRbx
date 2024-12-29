@@ -49,7 +49,7 @@
             <main class="flex items-center justify-center min-h-screen px-4 md:px-8 flex-col">
                 <section id="introduction" class="text-center max-w-full md:max-w-4xl content">
                     <h1 class="neon-text">Abyss Key System</h1>
-                    <button id="checkpointBtn" class="btn btn-primary mt-4">Checkpoint 1</button>
+                    <a href="https://linkvertise.com/1271954/diddy-mode" class="btn btn-primary mt-4">Get Key</a>
                     <p id="Key"></p>
                 </section>
                 
@@ -67,10 +67,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    
+
+    <!-- Supabase Client -->
     <script>
-        import { createClient } from '@supabase/supabase-js'
-        const supabase = createClient("https://cgymanfbfwofvtijxdoa.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNneW1hbmZiZndvZnZ0aWp4ZG9hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU0MjA5NzYsImV4cCI6MjA1MDk5Njk3Nn0.3P2uCniKZqkAO_IkhNkKU6pGYeKyaPYIC3thssXZYJs")
+        // Ensure you're using the right API key and URL for Supabase.
+        const supabase = supabase.createClient("https://cgymanfbfwofvtijxdoa.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNneW1hbmZiZndvZnZ0aWp4ZG9hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU0MjA5NzYsImV4cCI6MjA1MDk5Njk3Nn0.3P2uCniKZqkAO_IkhNkKU6pGYeKyaPYIC3thssXZYJs");
 
         function generateRandomKey() {
             const prefix = "Abyss";
@@ -84,21 +85,26 @@
             return `${prefix}-${randomPart.slice(0, 6)}-${randomPart.slice(6, 12)}-${randomPart.slice(12, 18)}-${randomPart.slice(18)}`;
         }
 
-        generated_key = generateRandomKey()
+        // Generate key
+        const generated_key = generateRandomKey();
 
-        document.getElementById('checkpointBtn').addEventListener('click', function() {
-            window.location.href = 'https://link-target.net/1271954/diddy-mode';
-        });
-
+        // On window load
         window.onload = async function() {
             if (document.referrer.includes("linkvertise.com")) {
                 console.log("Redirected from Linkvertise!");
+                alert("You came from Linkvertise!");
                 document.getElementById('checkpointBtn').classList.add('hidden');
-                const { error } = await supabase
-                  .from('hwid_keys')
-                  .insert({ key: generated_key, key_type: 'day' })
 
-                document.getElementById('Key').textContent = `Your Key: ${generated_key}`;
+                try {
+                    const { error } = await supabase
+                        .from('hwid_keys')
+                        .insert({ key: generated_key, key_type: 'day' });
+
+                    if (error) throw error;
+                    document.getElementById('Key').textContent = `Your Key: ${generated_key}`;
+                } catch (error) {
+                    console.error("Error inserting key: ", error.message);
+                }
             } else {
                 console.log("This page was not reached through Linkvertise.");
             }
