@@ -50,7 +50,10 @@
                 <section id="introduction" class="text-center max-w-full md:max-w-4xl content">
                     <h1 class="neon-text">Abyss Key System</h1>
                     <a href="https://link-target.net/1271954/diddy-mode" class="btn btn-primary mt-4">Get Key</a>
-                    <div id="generatedKey"></div>
+                    <!-- Key Box -->
+                    <div id="key-box" class="mt-6 p-6 bg-gray-800 rounded-xl shadow-md max-w-md mx-auto">
+                        <p id="Key" class="text-lg font-semibold">^ Claim your key above ^</p>
+                    </div>
                 </section>
                 
                 <p class="footer-text mt-16">
@@ -89,12 +92,37 @@
 
         const generated_key = generateRandomKey();
 
+        // Function to set a cookie
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+
+        // Function to get a cookie by name
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
         window.onload = async function() {
-            if (document.referrer.includes("linkvertise.com")) {
+            // Check if the page has already been visited from Linkvertise using cookies
+            if (getCookie('visitedFromLinkvertise') && document.referrer.includes("linkvertise.com")) {
+                console.log("Already visited from Linkvertise");
+                document.getElementById('Key').textContent = "Key already claimed for today";
+            } else if (!getCookie('visitedFromLinkvertise') && document.referrer.includes("linkvertise.com")) {
                 console.log("Redirected from Linkvertise!");
                 alert("You came from Linkvertise!");
-                document.getElementById('Key').textContent = `Generated Key: ${generated_key}`;
-                document.getElementById('checkpointBtn').classList.add('hidden');
+
+                // Set the cookie to prevent showing the message again
+                setCookie('visitedFromLinkvertise', 'true', 1); // Cookie expires after 1 day
 
                 try {
                     const { error } = await supabaseClient
@@ -102,7 +130,7 @@
                     .insert({ key: generated_key, key_type: 'day'})
 
                     if (error) throw error;
-                    document.getElementById('generatedKey').textContent = `Your key is: ${generated_key}`
+                    document.getElementById('Key').textContent = `Your key is: ${generated_key}`;
                 } catch (error) {
                     console.error("Error inserting key: ", error.message);
                 }
