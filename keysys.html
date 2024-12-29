@@ -50,7 +50,7 @@
                 <section id="introduction" class="text-center max-w-full md:max-w-4xl content">
                     <h1 class="neon-text">Abyss Key System</h1>
                     <button id="checkpointBtn" class="btn btn-primary mt-4">Checkpoint 1</button>
-                    <p id="generatedKey" class="mt-4 hidden text-lg"></p>
+                    <p id="Key"></p>
                 </section>
                 
                 <p class="footer-text mt-16">
@@ -86,31 +86,19 @@
 
         generated_key = generateRandomKey()
 
-        document.getElementById('checkpointBtn').addEventListener('click', async function() {
-            // Replace button with the generated key text
-            document.getElementById('checkpointBtn').classList.add('hidden');
-            const keyLabel = document.getElementById('generatedKey');
-            keyLabel.classList.remove('hidden');
-            keyLabel.textContent = `Your Key: ${generated_key}`;
-
-            // Insert the key into the Supabase database
-            if (document.referrer.includes("linkvertise.com")) {
-                console.log("Redirected from Linkvertise!");
-                const { error } = await supabase
-                  .from('hwid_keys')
-                  .insert({ key: generated_key, key_type: 'day' })
-            } else {
-                console.log("This page was not reached through Linkvertise.");
-            }
+        document.getElementById('checkpointBtn').addEventListener('click', function() {
+            window.location.href = 'https://link-target.net/1271954/diddy-mode';
         });
 
         window.onload = async function() {
             if (document.referrer.includes("linkvertise.com")) {
                 console.log("Redirected from Linkvertise!");
+                document.getElementById('checkpointBtn').classList.add('hidden');
                 const { error } = await supabase
                   .from('hwid_keys')
                   .insert({ key: generated_key, key_type: 'day' })
 
+                document.getElementById('Key').textContent = `Your Key: ${generated_key}`;
             } else {
                 console.log("This page was not reached through Linkvertise.");
             }
