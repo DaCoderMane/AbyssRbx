@@ -50,6 +50,7 @@
                 <section id="introduction" class="text-center max-w-full md:max-w-4xl content">
                     <h1 class="neon-text">Abyss Key System</h1>
                     <button id="checkpointBtn" class="btn btn-primary mt-4">Checkpoint 1</button>
+                    <p id="generatedKey" class="mt-4 hidden text-lg"></p>
                 </section>
                 
                 <p class="footer-text mt-16">
@@ -65,16 +66,51 @@
     <script src="Snowflakes.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <script>
-        document.getElementById('checkpointBtn').addEventListener('click', function() {
-            window.location.href = 'https://link-target.net/1271954/diddy-mode';
-        });
+        import { createClient } from '@supabase/supabase-js'
+        const supabase = createClient("https://cgymanfbfwofvtijxdoa.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNneW1hbmZiZndvZnZ0aWp4ZG9hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU0MjA5NzYsImV4cCI6MjA1MDk5Njk3Nn0.3P2uCniKZqkAO_IkhNkKU6pGYeKyaPYIC3thssXZYJs")
 
-        window.onload = function() {
+        function generateRandomKey() {
+            const prefix = "Abyss";
+            const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            let randomPart = '';
+            
+            for (let i = 0; i < 20; i++) {
+                randomPart += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+
+            return `${prefix}-${randomPart.slice(0, 6)}-${randomPart.slice(6, 12)}-${randomPart.slice(12, 18)}-${randomPart.slice(18)}`;
+        }
+
+        generated_key = generateRandomKey()
+
+        document.getElementById('checkpointBtn').addEventListener('click', async function() {
+            // Replace button with the generated key text
+            document.getElementById('checkpointBtn').classList.add('hidden');
+            const keyLabel = document.getElementById('generatedKey');
+            keyLabel.classList.remove('hidden');
+            keyLabel.textContent = `Your Key: ${generated_key}`;
+
+            // Insert the key into the Supabase database
             if (document.referrer.includes("linkvertise.com")) {
                 console.log("Redirected from Linkvertise!");
-                alert("You've been redirected from Linkvertise!");
+                const { error } = await supabase
+                  .from('hwid_keys')
+                  .insert({ key: generated_key, key_type: 'day' })
+            } else {
+                console.log("This page was not reached through Linkvertise.");
+            }
+        });
+
+        window.onload = async function() {
+            if (document.referrer.includes("linkvertise.com")) {
+                console.log("Redirected from Linkvertise!");
+                const { error } = await supabase
+                  .from('hwid_keys')
+                  .insert({ key: generated_key, key_type: 'day' })
+
             } else {
                 console.log("This page was not reached through Linkvertise.");
             }
