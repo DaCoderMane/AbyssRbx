@@ -50,7 +50,7 @@
                 <section id="introduction" class="text-center max-w-full md:max-w-4xl content">
                     <h1 class="neon-text">Abyss Key System</h1>
                     <a href="https://link-target.net/1271954/diddy-mode" class="btn btn-primary mt-4">Get Key</a>
-                    <p id="Key"></p>
+                    <div id="generatedKey"></div>
                 </section>
                 
                 <p class="footer-text mt-16">
@@ -93,6 +93,7 @@
             if (document.referrer.includes("linkvertise.com")) {
                 console.log("Redirected from Linkvertise!");
                 alert("You came from Linkvertise!");
+                document.getElementById('Key').textContent = `Generated Key: ${generated_key}`;
                 document.getElementById('checkpointBtn').classList.add('hidden');
 
                 try {
@@ -101,7 +102,7 @@
                     .insert({ key: generated_key, key_type: 'day'})
 
                     if (error) throw error;
-                    document.getElementById('Key').textContent = `Your Key: ${generated_key}`;
+                    document.getElementById('generatedKey').textContent = `Your key is: ${generated_key}`
                 } catch (error) {
                     console.error("Error inserting key: ", error.message);
                 }
@@ -111,5 +112,4 @@
         };
     </script>
 </body>
-
 </html>
