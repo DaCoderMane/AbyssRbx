@@ -89,22 +89,10 @@
         const generated_key = generateRandomKey();
 
         // On window load
-        window.onload = async function() {
+        window.onload =  function() {
             if (document.referrer.includes("linkvertise.com")) {
                 console.log("Redirected from Linkvertise!");
                 alert("You came from Linkvertise!");
-                document.getElementById('checkpointBtn').classList.add('hidden');
-
-                try {
-                    const { error } = await supabase
-                        .from('hwid_keys')
-                        .insert({ key: generated_key, key_type: 'day' });
-
-                    if (error) throw error;
-                    document.getElementById('Key').textContent = `Your Key: ${generated_key}`;
-                } catch (error) {
-                    console.error("Error inserting key: ", error.message);
-                }
             } else {
                 console.log("This page was not reached through Linkvertise.");
             }
