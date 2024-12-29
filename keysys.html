@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abyss - Documentation</title>
+    <link rel="icon" href="Static/IcoAbyssLogo.png" type="image/png">
+    <meta content="Abyss" property="og:title">
+    <meta content="Transforming Ideas into Reality\nWe push the boundaries of what's typical." property="og:description">
+    <meta content="#43B581" name="theme-color">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.22/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="Style.css">
+</head>
+
+<body class="dark:bg-[#19151c] bg-gray-100 transition-colors select-none text-white font-['Poppins', sans-serif]">
+    <div id="loading">
+        <span id="loadingText"></span>
+        <span class="caret"></span>
+    </div>
+
+    <div style="position: relative; z-index: 10;">
+        <nav class="nav-container" id="main-nav">
+            <div class="nav-content transition-all">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <img src="Static/AbyssLogo.png" alt="Logo" class="logo" style="height: 50px;">
+                    </div>
+                    <div class="flex items-center space-x-6 invisible sm:visible">
+                        <a href="https://abyssrbx.netlify.app/index.html" class="nav-button">Home</a>
+                        <a href="https://abyssrbx.netlify.app/documentation.html" class="nav-button">Documentation</a>
+                        <a href="https://github.com/DaCoderMane/AbyssDir/raw/refs/heads/main/Abyss.zip" class="nav-button">Download</a>
+                    </div>
+                    <div class="dropdown dropdown-end visible sm:invisible sm:hidden">
+                        <label tabindex="0" class="btn btn-ghost btn-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h7"></path>
+                            </svg>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="page-content">
+            <main class="flex items-center justify-center min-h-screen px-4 md:px-8 flex-col">
+                <section id="introduction" class="text-center max-w-full md:max-w-4xl content">
+                    <h1 class="neon-text">Abyss Key System</h1>
+                    <!-- Checkpoint 1 Button -->
+                    <button id="checkpointBtn" class="btn btn-primary mt-4">Checkpoint 1</button>
+                </section>
+                
+                <p class="footer-text mt-16">
+                    Abyss <span class="version-tag text-gray-500">v2.0.0</span>
+                </p>
+            </main>
+        </div>
+    </div>
+    <canvas id="SnowflakeCanvas" style="position: fixed; top: 0; left: 0; z-index: 0;"></canvas>
+
+    <script src="Download.js"></script>
+    <script src="Loading.js"></script>
+    <script src="Snowflakes.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    
+    <script>
+        // Add event listener to the Checkpoint 1 button
+        document.getElementById('checkpointBtn').addEventListener('click', function() {
+            // Redirect to Linkvertise
+            window.location.href = 'https://link-target.net/1271954/diddy-mode';  // Replace with your Linkvertise URL
+        });
+
+        // Check if the user came from Linkvertise on page load
+        window.onload = function() {
+            // Check if the referrer is from Linkvertise
+            if (document.referrer.includes("linkvertise.com")) {
+                // Execute your JavaScript after confirming redirection from Linkvertise
+                console.log("Redirected from Linkvertise!");
+                // Example of the JavaScript to execute
+                alert("You've been redirected from Linkvertise!");
+            } else {
+                console.log("This page was not reached through Linkvertise.");
+            }
+        };
+    </script>
+</body>
+
+</html>
