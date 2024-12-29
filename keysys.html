@@ -49,7 +49,6 @@
             <main class="flex items-center justify-center min-h-screen px-4 md:px-8 flex-col">
                 <section id="introduction" class="text-center max-w-full md:max-w-4xl content">
                     <h1 class="neon-text">Abyss Key System</h1>
-                    <!-- Checkpoint 1 Button -->
                     <button id="checkpointBtn" class="btn btn-primary mt-4">Checkpoint 1</button>
                 </section>
                 
@@ -68,19 +67,13 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     
     <script>
-        // Add event listener to the Checkpoint 1 button
         document.getElementById('checkpointBtn').addEventListener('click', function() {
-            // Redirect to Linkvertise
-            window.location.href = 'https://link-target.net/1271954/diddy-mode';  // Replace with your Linkvertise URL
+            window.location.href = 'https://link-target.net/1271954/diddy-mode';
         });
 
-        // Check if the user came from Linkvertise on page load
         window.onload = function() {
-            // Check if the referrer is from Linkvertise
             if (document.referrer.includes("linkvertise.com")) {
-                // Execute your JavaScript after confirming redirection from Linkvertise
                 console.log("Redirected from Linkvertise!");
-                // Example of the JavaScript to execute
                 alert("You've been redirected from Linkvertise!");
             } else {
                 console.log("This page was not reached through Linkvertise.");
